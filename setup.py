@@ -19,13 +19,14 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 # EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+
+from setuptools import setup, find_packages
 
 with open('README.md') as f:
     readme = f.read()
+
+with open('Version.txt') as f:
+    version = f.read()
 
 requires = [
     "pysnmp >= 4.2.5",
@@ -39,13 +40,21 @@ packages = [
 
 setup(
     name='Python Mini Probe',
-    version='0.1',
+    version=version,
     author='Paessler AG',
     author_email='support@paessler.com',
     license='BSD 3.0',
     description='Python MiniProbe for PRTG',
     long_description=readme,
-    #packages=find_packages(),
-    install_requires=requires
+    install_requires=requires,
+    packages=find_packages(),
+    url='https://github.com/PaesslerAG/PythonMiniProbe',
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Environment :: Console",
+        "License :: OSI Approved :: BSD License",
+        "Programming Language :: Python",
+
+    ]
 )
 
