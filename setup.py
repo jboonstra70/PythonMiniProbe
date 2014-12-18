@@ -10,7 +10,7 @@
 #3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse
 # or promote products derived from this software without specific prior written permission.
 
-#THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
 # INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
 # A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
 # INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
@@ -22,11 +22,11 @@
 
 from setuptools import setup, find_packages
 
-with open('README.md') as f:
-    readme = f.read()
 
-with open('Version.txt') as f:
-    version = f.read()
+def read(path):
+    with open(path, 'r') as f:
+        return f.read()
+
 
 requires = [
     "pysnmp >= 4.2.5",
@@ -40,12 +40,12 @@ packages = [
 
 setup(
     name='Python Mini Probe',
-    version=version,
+    version=read('VERSION.txt'),
     author='Paessler AG',
     author_email='support@paessler.com',
     license='BSD 3.0',
     description='Python MiniProbe for PRTG',
-    long_description=readme,
+    long_description=read('README.md'),
     install_requires=requires,
     packages=find_packages(),
     url='https://github.com/PaesslerAG/PythonMiniProbe',
