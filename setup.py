@@ -54,7 +54,11 @@ setup(
         "Environment :: Console",
         "License :: OSI Approved :: BSD License",
         "Programming Language :: Python",
-
-    ]
+    ],
+    entry_points={
+        'console_scripts': [
+            'probe = miniprobe.probe.main'
+        ]
+    }
 )
 
