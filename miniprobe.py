@@ -30,6 +30,7 @@ import hashlib
 import importlib
 import gc
 import logging
+from logging.handlers import WatchedFileHandler
 
 
 # import own modules
@@ -49,13 +50,13 @@ class MiniProbe(object):
     """
     def __init__(self):
         gc.enable()
-        logging.basicConfig(
-            filename="./logs/probe.log",
-            filemode="a",
-            level=logging.DEBUG,
-            format="%(asctime)s - %(levelname)s - %(message)s",
-            datefmt='%m/%d/%Y %H:%M:%S'
-        )
+        rlogger = logging.getLogger() # get root logger
+        fh = WatchedFileHandler("./logs/probe.log")
+        fh.setLevel(logging.DEBUG)
+        fmt = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s", '%m/%d/%Y %H:%M:%S')
+        fh.setFormatter(fmt)
+        rlogger.addHandler(fh) # add WatchedFileHandler to root logger
+        rlogger.setLevel(logging.DEBUG)
 
     def get_import_sensors(self):
         """
